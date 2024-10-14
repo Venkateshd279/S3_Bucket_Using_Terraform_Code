@@ -97,28 +97,6 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
     }
   }
 }
- /*
-  # Enable public access if specified
-  dynamic "policy" {
-    for_each = var.public_access ? [1] : []
-    content {
-      version = "2012-10-17"
-      statement {
-        actions   = ["s3:GetObject"]
-        resources = ["arn:aws:s3:::${var.bucket_name}/*"]
-        effect    = "Allow"
-        principals {
-          type        = "AWS"
-          identifiers = ["*"]
-        }
-      }
-    }
-  }
-
-  tags = {
-    Name = var.bucket_name
-  }
-} */
 
 # S3 Bucket Public Access Block - Conditionally block public access
 resource "aws_s3_bucket_public_access_block" "public_access_block" {
